@@ -31,3 +31,8 @@ android:
 
 script:
   - ./gradlew test jacocoTestReport
+
+cache:
+  directories:
+    - .gradle
+    - $HOME/.m2
