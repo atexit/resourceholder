@@ -36,3 +36,5 @@ cache:
   directories:
     - .gradle
     - $HOME/.m2
+    - gradle
+    - $HOME/.gradle
