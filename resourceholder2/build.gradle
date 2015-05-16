@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.robolectric'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
 
 android {
     compileSdkVersion 21
@@ -64,7 +66,6 @@ robolectric {
     }
 }
 
-apply plugin: 'jacoco'
 jacoco {
     //toolVersion = "0.7.1.201405082137"
     toolVersion = '0.7.4.201502262128'

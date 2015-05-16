@@ -30,11 +30,14 @@ android:
 
 
 script:
-  - ./gradlew test jacocoTestReport
+  - ./gradlew test
+
+after_success:
+  - ./gradlew jacocoTestReport coveralls
 
 cache:
   directories:
     - .gradle
-    - $HOME/.m2
     - gradle
+    - $HOME/.m2
     - $HOME/.gradle
