@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ResourceHolder</string>
+    <string name="parametrized_string">"a %1$s string with %2$d values"</string>
 </resources>
