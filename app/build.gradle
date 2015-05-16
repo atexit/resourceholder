@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 16
-    buildToolsVersion "19.1.0"
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "se.gravlax.resourceholder"
         minSdkVersion 16
-        targetSdkVersion 16
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
