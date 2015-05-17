@@ -1,5 +1,5 @@
 <manifest
-    package="se.gravlax.resourceholder"
+    package="se.gravlax.resourceholder.lib"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-sdk

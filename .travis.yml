@@ -33,11 +33,10 @@ script:
   - ./gradlew test
 
 after_success:
-  - ./gradlew jacocoTestReport coveralls
+  - ./gradlew jacocoRootReport coveralls
 
 cache:
   directories:
-    - .gradle
     - gradle
     - $HOME/.m2
     - $HOME/.gradle

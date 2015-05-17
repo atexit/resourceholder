@@ -1,4 +1,4 @@
-package se.gravlax.resourceholder;
+package se.gravlax.resourceholder.lib;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.robolectric'
-apply plugin: 'jacoco'
-apply plugin: 'com.github.kt3k.coveralls'
 
 android {
     compileSdkVersion 21
@@ -15,16 +13,27 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
+            minifyEnabled false
             testCoverageEnabled true
+            jacoco {
+                version = '0.7.4.201502262128'
+            }
         }
     }
+    publishNonDefault true
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    jacoco {
+        //toolVersion = "0.7.1.201405082137"
+        version = '0.7.4.201502262128'
     }
 }
 
@@ -47,9 +56,6 @@ robolectric {
     // Configure max heap size of the test JVM
     maxHeapSize = '2048m'
 
-    // Configure the test JVM arguments - Does not apply to Java 8
-    // jvmArgs '-XX:MaxPermSize=512m', '-XX:-UseSplitVerifier'
-
     // Specify max number of processes (default is 1)
     maxParallelForks = 4
 
@@ -64,35 +70,6 @@ robolectric {
     afterTest { descriptor, result ->
         println "Executing test for ${descriptor.name} with result: ${result.resultType}"
     }
+
 }
 
-jacoco {
-    //toolVersion = "0.7.1.201405082137"
-    toolVersion = '0.7.4.201502262128'
-}
-def coverageSourceDirs = [
-        '../resourceholder2/src/main/java'
-]
-task jacocoTestReport(type: JacocoReport, dependsOn: "testDebug") {
-    group = "Reporting"
-    description = "Generate Jacoco coverage reports"
-    classDirectories = fileTree(
-            dir: '../resourceholder2/build/intermediates/classes/debug',
-            excludes: ['**/R.class',
-                       '**/R$*.class',
-                       '**/*$ViewInjector*.*',
-                       '**/BuildConfig.*',
-                       '**/Manifest*.*']
-    )
-    additionalSourceDirs = files(coverageSourceDirs)
-    sourceDirectories = files(coverageSourceDirs)
-    executionData = files('../resourceholder2/build/jacoco/testDebug.exec')
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-
-coveralls {
-    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
-}
