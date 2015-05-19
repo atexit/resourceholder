@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">ResourceHolder</string>
-    <string name="parametrized_string">"a %1$s string with %2$d values"</string>
+    <string name="parametrized_string">a %1$s string with %2$d values</string>
+
+    <plurals name="plural_with_format_string">
+        <item quantity="zero">%1$d zero</item>
+        <item quantity="one">%1$d one</item>
+        <item quantity="two">%1$d two</item>
+        <item quantity="few">%1$d few</item>
+        <item quantity="many">%1$d many</item>
+        <item quantity="other">%1$d other</item>
+    </plurals>
+    <plurals name="plural_without_format_string">
+        <item quantity="zero">zero</item>
+        <item quantity="one">one</item>
+        <item quantity="two">two</item>
+        <item quantity="few">few</item>
+        <item quantity="many">many</item>
+        <item quantity="other">other</item>
+    </plurals>
 </resources>
