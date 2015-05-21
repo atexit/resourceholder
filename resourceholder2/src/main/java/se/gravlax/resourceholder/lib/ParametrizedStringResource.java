@@ -6,6 +6,8 @@ import android.support.annotation.StringRes;
 
 import com.google.common.base.Preconditions;
 
+import fj.data.Array;
+
 public class ParametrizedStringResource implements LocalizeableString {
 
     @StringRes
@@ -24,6 +26,12 @@ public class ParametrizedStringResource implements LocalizeableString {
     @Override
     public String getString(@NonNull Context context) {
         Preconditions.checkNotNull(context);
-        return context.getString(mStringResourceId, mParameters);
+        Object[] updatedParameters = Array.<Object>array(mParameters).map(object -> {
+            if (object instanceof LocalizeableString) {
+                return ((LocalizeableString) object).getString(context);
+            }
+            return object;
+        }).array();
+        return context.getString(mStringResourceId, updatedParameters);
     }
 }
