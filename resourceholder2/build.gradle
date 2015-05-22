@@ -1,5 +1,10 @@
+plugins {
+    id "me.tatarka.retrolambda" version "3.1.0"
+}
+
 apply plugin: 'com.android.library'
 apply plugin: 'org.robolectric'
+
 
 android {
     compileSdkVersion 21
@@ -27,8 +32,8 @@ android {
     publishNonDefault true
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     jacoco {
@@ -43,6 +48,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.google.dagger:dagger:2.0'
     compile 'com.google.dagger:dagger-compiler:2.0'
+    compile "org.functionaljava:functionaljava:4.2"
+    compile "org.functionaljava:functionaljava-java8:4.2"
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.0.5-beta'
     testCompile 'org.robolectric:robolectric:3.0-rc2'

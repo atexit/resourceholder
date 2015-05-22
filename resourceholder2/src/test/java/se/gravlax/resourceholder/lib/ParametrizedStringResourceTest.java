@@ -17,4 +17,10 @@ public class ParametrizedStringResourceTest {
         LocalizeableString string = new ParametrizedStringResource(R.string.parametrized_string, "formatted", 2);
         assertEquals("a formatted string with 2 values", string.getString(RuntimeEnvironment.application));
     }
+
+    @Test
+    public void testResolvesLocalizableStringsPassedAsVarargs() {
+        LocalizeableString string = new ParametrizedStringResource(R.string.parametrized_string, new StringLiteral("resolved"), 4);
+        assertEquals("a resolved string with 4 values", string.getString(RuntimeEnvironment.application));
+    }
 }

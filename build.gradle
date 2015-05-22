@@ -43,14 +43,29 @@ subprojects { proj ->
                 dir: 'build/intermediates/classes/debug',
                 excludes: ['**/R.class',
                         '**/R$*.class ',
+                        '**/R.*.class',
                            '**/BuildConfig*'])
         sourceDirectories = files('src/main/java')
         executionData = files('build/jacoco/testDebug.exec')
+
+        def renamedFilesMap = [:]
+
+        // Hacky fix for issue: https://code.google.com/p/android/issues/detail?id=69174.
+        // Rename files with '$$' before generating report, and then rename back after
         doFirst {
-            files('build/intermediates/classes/debug').getFiles().each { file ->
+            classDirectories.each { file ->
                 if (file.name.contains('$$')) {
-                    file.renameTo(file.path.replace('$$', '$'))
+                    def oldPath = file.path
+                    def newPath = oldPath.replace('$$', '$')
+                    file.renameTo(newPath)
+                    renamedFilesMap[newPath] = oldPath
                 }
+            }
+        }
+        doLast {
+            renamedFilesMap.each() {
+                newPath, oldPath ->
+                    new File(newPath).renameTo(oldPath)
             }
         }
     }
