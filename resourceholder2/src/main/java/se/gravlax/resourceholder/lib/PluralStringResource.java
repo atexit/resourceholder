@@ -1,8 +1,11 @@
 package se.gravlax.resourceholder.lib;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.annotation.PluralsRes;
+
+import com.google.common.base.Preconditions;
 
 public class PluralStringResource implements LocalizeableString{
     @PluralsRes private final int mPluralResourceId;
@@ -27,6 +30,8 @@ public class PluralStringResource implements LocalizeableString{
     @NonNull
     @Override
     public String getString(@NonNull Context context) {
-        return context.getResources().getQuantityString(mPluralResourceId, mCount, mCount);
+        final Resources resources = context.getResources();
+        Preconditions.checkNotNull(resources);
+        return resources.getQuantityString(mPluralResourceId, mCount, mCount);
     }
 }
