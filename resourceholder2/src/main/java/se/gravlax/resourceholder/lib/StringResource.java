@@ -7,7 +7,7 @@ import android.support.annotation.StringRes;
 import com.google.common.base.Preconditions;
 
 /**
- * An implementation of LocalizeableString that binds a String resource ID in a typesafe manner for
+ * An implementation of LocalizeableString that binds a String resource ID in a type-safe manner for
  * latter resolution, when a context is available.
  */
 public class StringResource implements LocalizeableString {
