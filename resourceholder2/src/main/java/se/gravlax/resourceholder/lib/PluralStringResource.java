@@ -9,6 +9,7 @@ import com.google.common.base.Preconditions;
 
 public class PluralStringResource implements LocalizeableString{
     @PluralsRes private final int mPluralResourceId;
+    private boolean mBound = false;
     private int mCount;
 
     public PluralStringResource(@PluralsRes final int pluralResourceId) {
@@ -24,6 +25,7 @@ public class PluralStringResource implements LocalizeableString{
      */
     public void bindCount(final int i) {
         mCount = i;
+        mBound = true;
     }
 
 
@@ -32,6 +34,7 @@ public class PluralStringResource implements LocalizeableString{
     public String getString(@NonNull Context context) {
         final Resources resources = context.getResources();
         Preconditions.checkNotNull(resources);
+        Preconditions.checkArgument(mBound);
         return resources.getQuantityString(mPluralResourceId, mCount, mCount);
     }
 }

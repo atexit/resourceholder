@@ -1,16 +1,18 @@
 package se.gravlax.resourceholder.lib;
 
-import android.support.annotation.NonNull;
-
 import com.google.common.base.Preconditions;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Generates LocalizedStrings.
  */
 public class LocalizableFactory {
 
-    public LocalizeableString create(@NonNull final String literal) {
+    public LocalizeableString create(@NotNull final String literal) {
         Preconditions.checkNotNull(literal);
         return new StringLiteral(literal);
     }
+
+
 }
